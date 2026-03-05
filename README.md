@@ -1,3 +1,5 @@
+Adapted from [official documentation](https://learn.microsoft.com/en-us/sql/linux/quickstart-sql-server-containers-azure?view=sql-server-ver16&tabs=oc)
+
 ## Prerequisites
 
 1. OCP Cluster
