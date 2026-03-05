@@ -1,6 +1,7 @@
 ## Prerequisites
 
 1. OCP Cluster in AWS
+2. Download [virtctl](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/virtualization/getting-started#installing-virtctl_virt-using-the-cli-tools)
 
 ## Steps
 
