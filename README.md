@@ -47,9 +47,24 @@ oc create secret generic authorized-keys --from-file=ssh-publickey=$HOME/.ssh/id
 oc create -f mssql-rhel-vm.yaml
 ```
 
+5. Expose the VM
+
+```bash
+oc create -f mssql-virt-svc.yaml
+```
+
 ### MS SQL Server
 
 1. SSH into the VM
 
-2. Follow these steps to install SQL Server, [link](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-linux-ver17)
+```bash
+virtctl ssh cloud-user@vm/mssql-rhel-vm -i ~/.ssh/id_rsa -n mssql-virt
+```
 
+2. Register to subscription manager
+
+```bash
+sudo subscription-manager register
+```
+
+3. Follow these steps to install SQL Server, [link](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-linux-ver17)
