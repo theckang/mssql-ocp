@@ -67,4 +67,28 @@ virtctl ssh cloud-user@vm/mssql-rhel-vm -i ~/.ssh/id_rsa -n mssql-virt
 sudo subscription-manager register
 ```
 
-3. Follow these steps to install SQL Server, [link](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-linux-ver17)
+3. Install firewall
+
+```bash
+sudo yum install firewalld
+sudo systemctl enable --now firewalld
+```
+
+4. Follow these steps to install SQL Server, [link](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-linux-ver17)
+
+5. Get URL to server
+
+```bash
+SQL_SERVER_URI=$(oc get svc mssql-virt -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+echo $SQL_SERVER_URI
+```
+
+6. Connect to server and test
+
+```bash
+sqlcmd -S $SQL_SERVER_URI -U sa -P $SQL_SA_PASSWORD
+
+1> SELECT name, database_id, create_date
+FROM sys.databases;
+GO
+```
